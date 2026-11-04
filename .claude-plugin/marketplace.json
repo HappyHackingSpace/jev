@@ -1,0 +1,15 @@
+{
+  "name": "happyhackingspace-jev",
+  "description": "Jev (TypeSafe System One) for Claude Code: MCP tools and a skill.",
+  "owner": {
+    "name": "Happy Hacking Space",
+    "url": "https://github.com/happyhackingspace"
+  },
+  "plugins": [
+    {
+      "name": "jev",
+      "description": "Ask TypeSafe's Jev typed questions: jev_ask and jev_models MCP tools plus a usage skill",
+      "source": "./"
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+version: 2
+
+before:
+  hooks:
+    - sh -c 'mkdir -p completions && for sh in bash zsh fish; do go run ./cmd/jev completion $sh > completions/jev.$sh; done'
+
+builds:
+  - dir: ./cmd/jev
+    env:
+      - CGO_ENABLED=0
+    ldflags:
+      - -s -w -X main.version={{.Version}}
+    goos:
+      - linux
+      - darwin
+      - windows
+    goarch:
+      - amd64
+      - arm64
+
+archives:
+  - formats:
+      - tar.gz
+    files:
+      - LICENSE
+      - README.md
+      - completions/*
+    format_overrides:
+      - goos: windows
+        formats:
+          - zip
+
+checksum:
+  name_template: "checksums.txt"
+
+changelog:
+  sort: asc

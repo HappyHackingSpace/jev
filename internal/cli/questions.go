@@ -123,7 +123,7 @@ func (a *app) choiceCmd() *cobra.Command {
 			if a.jsonOut {
 				return writeJSON(a.stdout, resp)
 			}
-			fmt.Fprintf(a.stdout, "%s\t(confidence %s)\n", answer.Choice, formatConfidence(answer.Confidence))
+			fmt.Fprintf(a.stdout, "%s  (confidence %s)\n", answer.Choice, formatConfidence(answer.Confidence))
 			return printProbabilities(a, answer.Probabilities, func(k string) string { return k })
 		},
 	}
@@ -156,7 +156,7 @@ func (a *app) scoreCmd() *cobra.Command {
 			if a.jsonOut {
 				return writeJSON(a.stdout, resp)
 			}
-			fmt.Fprintf(a.stdout, "%.2f / %d\t(confidence %s)\n", *answer.Score, len(levels)-1, formatConfidence(answer.Confidence))
+			fmt.Fprintf(a.stdout, "%.2f / %d  (confidence %s)\n", *answer.Score, len(levels)-1, formatConfidence(answer.Confidence))
 			return printProbabilities(a, answer.Probabilities, func(k string) string {
 				return k + " " + fmt.Sprint(answer.Legend[k])
 			})
@@ -187,7 +187,7 @@ func (a *app) boxCmd() *cobra.Command {
 				return writeJSON(a.stdout, resp)
 			}
 			b := answer.Box
-			_, err = fmt.Fprintf(a.stdout, "%.4f %.4f %.4f %.4f\t(confidence %s)\n", b.Top, b.Bottom, b.Left, b.Right, formatConfidence(answer.Confidence))
+			_, err = fmt.Fprintf(a.stdout, "%.4f %.4f %.4f %.4f  (confidence %s)\n", b.Top, b.Bottom, b.Left, b.Right, formatConfidence(answer.Confidence))
 			return err
 		},
 	}

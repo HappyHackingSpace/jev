@@ -3,7 +3,6 @@ package cli
 import (
 	"encoding/json"
 	"fmt"
-	"io"
 	"os"
 	"strings"
 
@@ -31,7 +30,7 @@ go in the request and the model sees the image there.`,
   EOF`,
 		Args: cobra.MaximumNArgs(1),
 		RunE: func(cmd *cobra.Command, args []string) error {
-			var src io.Reader = a.stdin
+			src := a.stdin
 			if len(args) == 1 && args[0] != "-" {
 				f, err := os.Open(args[0])
 				if err != nil {
